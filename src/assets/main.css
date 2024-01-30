@@ -1,0 +1,154 @@
+#app {
+  text-align: center;
+  padding: 20px;
+}
+
+.bpi-design {
+  font-family: "Arial", sans-serif;
+  background-color: #ffffff;
+  border: 1px solid #e1e1e1;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.bpi-title {
+  color: #004481;
+  margin-bottom: 10px;
+}
+
+.greeting {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.pin-entry {
+  text-align: center;
+}
+
+.numeric-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.digit-button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pin-display {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.clear-button,
+.submit-button,
+.generate-receipt,
+.new-transaction {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.account-type {
+  margin-bottom: 20px;
+}
+
+.account-type-label {
+  color: #004481;
+}
+
+.account-type-dropdown {
+  padding: 8px;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.account-info {
+  background-color: #f2f7f8;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.account-holder,
+.account-balance {
+  margin: 5px 0;
+  color: #004481;
+}
+
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transaction-label {
+  margin-bottom: 10px;
+  color: #004481;
+}
+
+.transaction-input {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+}
+
+.transaction-button {
+  padding: 8px 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.deposit {
+  background-color: #004481;
+}
+
+.withdraw {
+  background-color: #e44d26;
+}
+
+.reset {
+  background-color: #6c757d;
+}
+
+.logout,
+.new-transaction {
+  background-color: #6c757d;
+}
+
+.generate-receipt {
+  background-color: #ffc107;
+}
+
+.receipt {
+  margin-top: 20px;
+}
+
+.receipt h2 {
+  color: #004481;
+}
+
+.receipt ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.receipt li {
+  margin: 5px 0;
+}
+.bank-logo {
+  width: 150px; /* Adjust the width as needed */
+  height: auto;
+  margin-bottom: 20px; /* Add spacing below the logo */
+}
