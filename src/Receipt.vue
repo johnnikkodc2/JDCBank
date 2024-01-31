@@ -19,11 +19,15 @@
           {{ transaction.type }}: ₱{{ transaction.amount }}
         </li>
       </ul>
-      <button @click="printReceipt" class="print-button">Print Receipt</button>
-
-      <button @click="makeAnotherTransaction" class="transaction-button2">
-        Make Another Transaction
-      </button>
+      <div class="pin-buttons">
+        <button @click="printReceipt" class="print-button">
+          Print Receipt
+        </button>
+        <span class="button-space"></span>
+        <button @click="makeAnotherTransaction" class="transaction-button2">
+          Make Another Transaction
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -74,5 +78,8 @@ export default {
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
+}
+.button-space {
+  margin-right: 10px;
 }
 </style>

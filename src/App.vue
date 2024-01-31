@@ -21,8 +21,11 @@
           </button>
         </div>
 
-        <button @click="clearPin" class="transaction-button">Clear</button>
-        <button @click="verifyPin" class="transaction-button">Submit</button>
+        <div class="pin-buttons">
+          <button @click="clearPin" class="transaction-button">Clear</button>
+          <span class="button-space"></span>
+          <button @click="verifyPin" class="transaction-button">Submit</button>
+        </div>
       </div>
 
       <div v-else>
