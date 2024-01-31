@@ -47,6 +47,7 @@
 .clear-button,
 .submit-button,
 .generate-receipt,
+.transaction-button,
 .new-transaction {
   margin-top: 10px;
   padding: 10px;
@@ -101,15 +102,6 @@
   border-radius: 3px;
 }
 
-.transaction-button {
-  padding: 8px 15px;
-  cursor: pointer;
-  border: none;
-  border-radius: 3px;
-  color: #ffffff;
-  font-weight: bold;
-}
-
 .deposit {
   background-color: #004481;
 }
@@ -148,7 +140,19 @@
   margin: 5px 0;
 }
 .bank-logo {
-  width: 150px; /* Adjust the width as needed */
+  width: 150px;
   height: auto;
-  margin-bottom: 20px; /* Add spacing below the logo */
+  margin-bottom: 20px;
+}
+
+.deposit {
+  background-color: #004481;
+}
+
+.withdraw {
+  background-color: #e44d26;
+}
+
+.logout {
+  background-color: #6c757d;
 }
