@@ -165,10 +165,8 @@ export default {
         );
       });
 
-      // Reset values after generating the receipt
-      this.selectedAccount = ""; // Clear the selected account
-      this.transactionAmount = 0; // Reset transaction amount
-      // Add more data reset as needed
+      this.selectedAccount = "";
+      this.transactionAmount = 0;
     },
     recordTransaction(type, amount) {
       this.transactionHistory.push({
