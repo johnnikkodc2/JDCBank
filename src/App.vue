@@ -38,8 +38,8 @@
             @change="updateBalance"
             class="account-type-dropdown"
           >
-            <option value="savings">Savings Account</option>
-            <option value="checking">Checking Account</option>
+            <option value="savings">029324</option>
+            <option value="checking">049212</option>
           </select>
         </div>
 
@@ -83,8 +83,7 @@ export default {
   },
   data() {
     return {
-      bankName: "BPI",
-      accountHolder: "John",
+      accountHolder: "John Nikko",
       selectedAccount: "savings",
       showReceipt: false,
       balance: {
@@ -115,6 +114,10 @@ export default {
       }
     },
     withdraw() {
+      if (!(this.selectedAccount in this.balance)) {
+        this.balance[this.selectedAccount] = 0;
+      }
+
       if (
         this.transactionAmount > 0 &&
         this.transactionAmount <= this.balance[this.selectedAccount]
@@ -126,7 +129,7 @@ export default {
         this.showReceipt = true;
         this.generateReceipt();
       } else {
-        alert("Insufficient funds!");
+        alert("Invalid withdrawal amount or insufficient funds!");
       }
     },
     reset() {
@@ -153,21 +156,7 @@ export default {
       this.clearPin();
       this.transactionHistory = [];
     },
-    newTransaction() {
-      this.transactionAmount = 0;
-      this.transactionHistory = [];
-    },
-    generateReceipt() {
-      console.log("Bank Receipt:");
-      this.transactionHistory.forEach((transaction, index) => {
-        console.log(
-          `${index + 1}. ${transaction.type}: ₱${transaction.amount}`
-        );
-      });
 
-      this.selectedAccount = "";
-      this.transactionAmount = 0;
-    },
     recordTransaction(type, amount) {
       this.transactionHistory.push({
         type,

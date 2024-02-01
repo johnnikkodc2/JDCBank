@@ -8,10 +8,8 @@
       <p>Date: {{ getCurrentDate() }}</p>
       <p>Time: {{ getCurrentTime() }}</p>
       <p>
-        Account Type:
-        {{
-          selectedAccount === "savings" ? "Savings Account" : "Checking Account"
-        }}
+        Account number:
+        {{ selectedAccount === "savings" ? "029324" : "049212" }}
       </p>
       <p>Balance: ₱{{ formattedBalance }}</p>
       <ul>
@@ -37,7 +35,7 @@ export default {
   props: {
     accountHolder: {
       type: String,
-      default: "John",
+      default: "John Nikko",
     },
     selectedAccount: {
       type: String,
