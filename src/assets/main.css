@@ -13,11 +13,6 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.bpi-title {
-  color: #004481;
-  margin-bottom: 10px;
-}
-
 .greeting {
   font-size: 20px;
   margin-bottom: 20px;
@@ -38,6 +33,10 @@
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
+  background-color: white;
+}
+.digit-button:hover {
+  background-color: rgb(240, 209, 35);
 }
 
 .pin-display {
@@ -54,6 +53,7 @@
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
+  background-color: white;
 }
 .button-space {
   margin-right: 10px;

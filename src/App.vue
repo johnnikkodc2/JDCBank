@@ -76,7 +76,9 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import Receipt from "./Receipt.vue";
+
 export default {
   components: {
     Receipt,
@@ -105,36 +107,93 @@ export default {
   },
   methods: {
     deposit() {
-      if (this.transactionAmount > 0) {
+      if (this.transactionAmount <= 0) {
+        this.showNotification("error", "Please insert money!");
+        return;
+      }
+
+      if (this.transactionAmount > 1) {
+        Swal.fire({
+          icon: "question",
+          title: "Confirmation",
+          text: "Are you sure you want to deposit?",
+          showCancelButton: true,
+          confirmButtonText: "Deposit",
+          cancelButtonText: "Cancel",
+          reverseButtons: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.balance[this.selectedAccount] += parseFloat(
+              this.transactionAmount
+            );
+            this.recordTransaction("Deposit", this.transactionAmount);
+            this.showReceipt = true;
+            this.showNotification("success", "Deposit successful!");
+          }
+        });
+      } else {
         this.balance[this.selectedAccount] += parseFloat(
           this.transactionAmount
         );
         this.recordTransaction("Deposit", this.transactionAmount);
         this.showReceipt = true;
+        this.showNotification("success", "Deposit successful!");
       }
     },
     withdraw() {
-      if (!(this.selectedAccount in this.balance)) {
-        this.balance[this.selectedAccount] = 0;
+      if (this.transactionAmount <= 0) {
+        this.showNotification(
+          "error",
+          "Invalid withdrawal amount or insufficient funds!"
+        );
+        return;
       }
 
-      if (
-        this.transactionAmount > 0 &&
-        this.transactionAmount <= this.balance[this.selectedAccount]
-      ) {
-        this.balance[this.selectedAccount] -= parseFloat(
-          this.transactionAmount
-        );
-        this.recordTransaction("Withdrawal", this.transactionAmount);
-        this.showReceipt = true;
-        this.generateReceipt();
+      if (this.transactionAmount > 1) {
+        Swal.fire({
+          icon: "question",
+          title: "Confirmation",
+          text: "Are you sure you want to withdraw?",
+          showCancelButton: true,
+          confirmButtonText: "Withdraw",
+          cancelButtonText: "Cancel",
+          reverseButtons: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if (!(this.selectedAccount in this.balance)) {
+              this.balance[this.selectedAccount] = 0;
+            }
+            if (this.transactionAmount <= this.balance[this.selectedAccount]) {
+              this.balance[this.selectedAccount] -= parseFloat(
+                this.transactionAmount
+              );
+              this.recordTransaction("Withdrawal", this.transactionAmount);
+              this.showReceipt = true;
+              this.showNotification("success", "Withdrawal successful!");
+              this.generateReceipt();
+            } else {
+              this.showNotification("error", "Insufficient funds!");
+            }
+          }
+        });
       } else {
-        alert("Invalid withdrawal amount or insufficient funds!");
+        if (!(this.selectedAccount in this.balance)) {
+          this.balance[this.selectedAccount] = 0;
+        }
+        if (this.transactionAmount <= this.balance[this.selectedAccount]) {
+          this.balance[this.selectedAccount] -= parseFloat(
+            this.transactionAmount
+          );
+          this.recordTransaction("Withdrawal", this.transactionAmount);
+          this.showReceipt = true;
+          this.showNotification("success", "Withdrawal successful!");
+          this.generateReceipt();
+        } else {
+          this.showNotification("error", "Insufficient funds!");
+        }
       }
     },
-    reset() {
-      this.transactionAmount = 0;
-    },
+
     enterDigit(digit) {
       if (this.enteredPin.length < 4) {
         this.enteredPin += digit.toString();
@@ -147,20 +206,42 @@ export default {
       if (this.enteredPin === this.defaultPin) {
         this.isPinEntered = true;
       } else {
-        alert("Incorrect PIN. Please try again.");
+        this.showNotification("error", "Incorrect PIN. Please try again.");
         this.clearPin();
       }
     },
     logout() {
-      this.isPinEntered = false;
-      this.clearPin();
-      this.transactionHistory = [];
+      Swal.fire({
+        icon: "question",
+        title: "Logout Confirmation",
+        text: "Are you sure you want to logout?",
+        showCancelButton: true,
+        confirmButtonText: "Logout",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.isPinEntered = false;
+          this.clearPin();
+          this.transactionHistory = [];
+          this.showNotification("error", "Logged out successfully.");
+        }
+      });
     },
 
     recordTransaction(type, amount) {
       this.transactionHistory.push({
         type,
         amount,
+      });
+    },
+
+    showNotification(type, message) {
+      Swal.fire({
+        icon: type,
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
       });
     },
   },

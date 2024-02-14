@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   props: {
     accountHolder: {
@@ -63,7 +64,16 @@ export default {
       window.print();
     },
     makeAnotherTransaction() {
-      window.location.reload();
+      Swal.fire({
+        icon: "info",
+        title: "Generating New Transaction",
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        willClose: () => {
+          window.location.reload();
+        },
+      });
     },
   },
 };
